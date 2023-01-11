@@ -68,7 +68,7 @@ if __name__ == '__main__':
 	dimension = 10
 	creature_horizon = 100
 	
-	evolver_timesteps_list = [100, 500, 1000, 10000, 30000]
+	evolver_timesteps_list = [100, 500, 1000, 10000, 30000, 100000, 1000000]
 
 	summary = np.zeros((len(evolver_timesteps_list), num_experiments))
 
