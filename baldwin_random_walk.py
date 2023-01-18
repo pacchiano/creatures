@@ -20,6 +20,9 @@ def run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_mu
 
 	learner = EFESLearner(initial_lambda_multiplier, dimension, symbols = [0,1])
 	
+
+
+
 	if creature_horizon == 0:
 		raise ValueError("Creature horizon is zero")
 
@@ -42,11 +45,7 @@ def run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_mu
 							ultimate_reward = 1
 							break
 
-
-			index_to_perturb = np.random.choice(dimension)
-
-
-			
+			index_to_perturb = np.random.choice(dimension)			
 			evolver_vector[index_to_perturb] = not evolver_vector[index_to_perturb]
 
 		
@@ -81,7 +80,7 @@ if __name__ == '__main__':
 	creature_horizons = [1, 10, 100]
 	colors = ["blue", "red", "green"]
 
-	step_size = .01
+	step_size = .1
 
 	evolver_timesteps = 100000
 
