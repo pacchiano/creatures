@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
 	step_size = 1
 
-	evolver_timesteps = 100000
+	evolver_timesteps = 10000000
 
 	#Ts = np.arange(evolver_timesteps) + 1
 	averaging_window = 100
@@ -125,10 +125,11 @@ if __name__ == '__main__':
 	
 
 
+	plt.xscale("log")
 	plt.title("Foraging Search Average Rewards")
 	plt.xlabel("Evolver Timesteps")
 	plt.ylabel("Average Ultimate Rewards")
-	plt.legend(loc = "upper left")
+	plt.legend(loc = "lower right")
 	plt.savefig("./plots/randomwalk_baldwin.png")
 
 
