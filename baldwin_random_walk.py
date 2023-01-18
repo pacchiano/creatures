@@ -74,7 +74,7 @@ def run_search_remote(dimension, evolver_timesteps, creature_horizon, initial_la
 
 if __name__ == '__main__':
 
-	num_experiments = 10
+	num_experiments = 20
 
 	#evolver_timesteps = 1000
 	dimension = 5
