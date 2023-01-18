@@ -35,17 +35,24 @@ def run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_mu
 
 		print("Evolver Step t ", t+1, " - creature horizon ", creature_horizon, " - ", tag)
 
+
 		
 		for h in range(creature_horizon):
+			if np.min(evolver_vector == target_vector) >= True:		
+							ultimate_reward = 1
+							break
+
+
 			index_to_perturb = np.random.choice(dimension)
 
 
 			
 			evolver_vector[index_to_perturb] = not evolver_vector[index_to_perturb]
 
-			if np.min(evolver_vector == target_vector) >= True:		
-				ultimate_reward = 1
-				break
+		
+		if np.min(evolver_vector == target_vector) >= True:		
+			ultimate_reward = 1
+			break
 
 		ultimate_reward_list.append(ultimate_reward)
 
