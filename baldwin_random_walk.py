@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
 	step_size = .1
 
-	evolver_timesteps = 1000
+	evolver_timesteps = 100000
 
 	#Ts = np.arange(evolver_timesteps) + 1
 	averaging_window = 100
