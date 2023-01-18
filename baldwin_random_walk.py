@@ -74,12 +74,12 @@ def run_search_remote(dimension, evolver_timesteps, creature_horizon, initial_la
 
 if __name__ == '__main__':
 
-	num_experiments = 15
+	num_experiments = 10
 
 	#evolver_timesteps = 1000
 	dimension = 5
-	creature_horizons = [1, 10]
-	colors = ["blue", "red"]
+	creature_horizons = [1, 10, 100]
+	colors = ["blue", "red", "green"]
 
 	step_size = .01
 
