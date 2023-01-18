@@ -52,7 +52,7 @@ def run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_mu
 		
 		if np.min(evolver_vector == target_vector) >= True:		
 			ultimate_reward = 1
-			break
+			#break
 
 		ultimate_reward_list.append(ultimate_reward)
 
