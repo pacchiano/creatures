@@ -60,7 +60,7 @@ def run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_mu
 		#### Update the EFES learner
 		sample_vector2 = learner.sample_string()
 
-		learner.update_statistics1( sample_vector1, sample_vector2, ultimate_reward, step_size*1.0/np.sqrt(t+1))
+		learner.update_statistics1( sample_vector1, sample_vector2, ultimate_reward, step_size)
 
 	return ultimate_reward_list
 
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 	creature_horizons = [1, 10]
 	colors = ["blue", "red"]
 
-	step_size = 1
+	step_size = .01
 
 	evolver_timesteps = 1000000
 
