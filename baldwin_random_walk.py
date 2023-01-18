@@ -84,7 +84,7 @@ if __name__ == '__main__':
 	
 		summary[i, :] = experiments_results
 
-	IPython.embed()
+	#IPython.embed()
 
 	means = np.mean(summary, 1)
 	stds = np.std(summary, 1)
