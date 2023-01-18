@@ -77,8 +77,8 @@ if __name__ == '__main__':
 
 	#evolver_timesteps = 1000
 	dimension = 5
-	creature_horizons = [1, 10, 100]
-	colors = ["blue", "red", "green"]
+	creature_horizons = [1, 50, 100, 200]
+	colors = ["blue", "red", "green", "black"]
 
 	step_size = .1
 
