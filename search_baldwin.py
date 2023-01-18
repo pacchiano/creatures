@@ -6,7 +6,7 @@ def generate_random_binary_vector(dimension):
 	return np.random.random(dimension) >= .5
 
 
-
+### This function runs the main search subroutine ###
 def run_search(evolver_dimension, evolver_timesteps, creature_dimension, creature_horizon):
 	target_evolver_vector = np.full(evolver_dimension, True)
 	target_creature_vector = np.full(creature_dimension, True)
@@ -39,7 +39,7 @@ def run_search(evolver_dimension, evolver_timesteps, creature_dimension, creatur
 	return ultimate_reward_list
 
 
-
+### This is related to the theoretical bound ### 
 def find_first_evolver_step_match(evolver_dimension, creature_dimension, creature_horizon):
 	target_evolver_vector = np.full(evolver_dimension, True)
 	target_creature_vector = np.full(creature_dimension, True)
@@ -78,7 +78,8 @@ if __name__ == '__main__':
 
 	num_experiments = 10
 
-	creature_dimension = 5
+	creature_dimension = 5 ### Try different actor bit lengths. 
+	### Keep horizon fixed and vary the creature dimension.
 	average_rewards = []
 	evolver_step_matches = []
 
