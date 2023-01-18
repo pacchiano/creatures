@@ -74,7 +74,9 @@ def find_first_evolver_step_match(evolver_dimension, creature_dimension, creatur
 if __name__ == '__main__':
 
 	evolver_dimension = 10
-	evolver_timesteps = 100000
+	evolver_timesteps = 10000
+
+	num_experiments = 10
 
 	creature_dimension = 5
 	average_rewards = []
@@ -82,9 +84,26 @@ if __name__ == '__main__':
 
 	creature_horizons = [1, 5, 10, 50, 100, 200]
 
-	for creature_horizon in creature_horizons:
+	averaging_window = 10
 
-		ultimate_reward_list = run_search(evolver_dimension, evolver_timesteps, creature_dimension, creature_horizon)
+	horizons_results = []
+
+	for creature_horizon in creature_horizons:
+ 
+		all_ultimate_reward_list = []
+
+		for _ in range(num_experiments):
+			ultimate_reward_list = run_search(evolver_dimension, evolver_timesteps, creature_dimension, creature_horizon)
+
+			all_ultimate_reward_list.append(ultimate_reward_list)
+
+		ultimate_reward_list = np.mean(all_ultimate_reward_list, 0)
+
+		
+
+
+
+		horizons_results.append(ultimate_reward_list)
 
 		average_reward = np.mean(ultimate_reward_list)
 
@@ -95,6 +114,9 @@ if __name__ == '__main__':
 		evolver_step_matches.append(evolver_step_match)
 
 
+
+
+	#hyperparam_rewards_mean.reshape(int(num_batches/averaging_window), averaging_window), 1)
 
 
 	plt.plot(creature_horizons, average_rewards, label = "Average Rewards")
@@ -114,10 +136,23 @@ if __name__ == '__main__':
 	plt.savefig("./plots/search_baldwin_num_evolver_steps.png")
 
 	
+	plt.close("all")
 
+	Ts = (np.arange(int(evolver_timesteps/averaging_window)) + 1)*averaging_window
 
+	for i,creature_horizon in zip(range(len(creature_horizons)), creature_horizons):
 
+		compressed_horizons_results = np.mean(np.array(horizons_results[i]).reshape(int(evolver_timesteps/averaging_window), averaging_window), 1)
 
+		plt.plot(Ts, compressed_horizons_results, label = "H-{}".format(creature_horizon))
+
+	plt.title("Actor Ultimate Performance Varying Horizon")
+	plt.xlabel("Evolver Timesteps")
+	plt.ylabel("Ultimate Reward")
+	plt.legend(loc = "upper left")
+	plt.savefig("./plots/horizon_comparison_baldwin.png")
+
+	plt.close("all")
 
 	IPython.embed()
 

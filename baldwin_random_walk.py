@@ -94,7 +94,7 @@ if __name__ == '__main__':
 	plt.title("Random Search Average Rewards - H{}".format(creature_horizon))
 	plt.xlabel("Evolver Timesteps")
 	plt.ylabel("Average Ultimate Rewards")
-	plt.savefig("./plots/randomwalk_baldwin.png")
+	plt.savefig("./plots/randomwalk_baldwin_H{}.png".format(creature_horizon))
 
 
 	plt.close("all")
