@@ -74,7 +74,7 @@ def run_search_remote(dimension, evolver_timesteps, creature_horizon, initial_la
 
 if __name__ == '__main__':
 
-	num_experiments = 20
+	num_experiments = 15
 
 	#evolver_timesteps = 1000
 	dimension = 5
@@ -130,7 +130,7 @@ if __name__ == '__main__':
 	plt.xlabel("Evolver Timesteps")
 	plt.ylabel("Average Ultimate Rewards")
 	plt.legend(loc = "lower right")
-	plt.savefig("./plots/randomwalk_baldwin.png")
+	plt.savefig("./plots/randomwalk_baldwin_{}.png".format(step_size))
 
 
 	plt.close("all")
