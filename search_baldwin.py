@@ -74,7 +74,7 @@ def find_first_evolver_step_match(evolver_dimension, creature_dimension, creatur
 if __name__ == '__main__':
 
 	evolver_dimension = 10
-	evolver_timesteps = 10000
+	evolver_timesteps = 100000
 
 	num_experiments = 10
 
