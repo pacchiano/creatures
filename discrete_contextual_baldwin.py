@@ -46,6 +46,8 @@ class CreatureLearner:
 		if context_index < len(self.evolver_vector):
 			return self.evolver_vector[context_index]
 
+		#raise ValueError("Asdflakmsdflaksmdf got here!")
+
 		if self.rew_ucb_statistics[context_index] >= 0:
 			return 1
 		else:
@@ -64,7 +66,7 @@ class CreatureLearner:
 
 def run_experiment(num_contexts, parameters, evolver_dimensions,
 	evolver_timesteps, creature_horizon, initial_lambda_multiplier = 0, 
-	step_size = .01, tag = ""):
+	step_size = .1, tag = ""):
 	
 	target_vector = np.full(num_contexts, True)
 	ultimate_reward_list = np.zeros(evolver_timesteps)
@@ -90,8 +92,10 @@ def run_experiment(num_contexts, parameters, evolver_dimensions,
 
 		print("Evolver Step t ", t+1, " - creature horizon ", creature_horizon, " - ", tag)
 		#IPython.embed()
-
+		print("Evolver vector ", evolver_vector)
 		#raise ValueError("Asflk")
+
+
 
 		creature_learner = CreatureLearner(num_contexts, evolver_vector = evolver_vector)
 		learners_rewards = np.zeros(creature_horizon)
@@ -119,6 +123,8 @@ def run_experiment(num_contexts, parameters, evolver_dimensions,
 		#### Update the EFES learner
 		sample_vector2 = learner.sample_string()
 
+		print("ultimate reward ", ultimate_reward)
+
 		learner.update_statistics1( sample_vector1, sample_vector2, ultimate_reward, step_size)
 
 	return ultimate_reward_list
@@ -129,17 +135,18 @@ def run_experiment(num_contexts, parameters, evolver_dimensions,
 
 if __name__ == '__main__':
 	parameters = [.6, .4, .3, .7]
-	IPython.embed()	
+	#IPython.embed()	
 
 
 	evolver_timesteps = int(sys.argv[1])
 	creature_horizon = int(sys.argv[2])
-	evolver_dimension = int(sys.argv[3])	
+	evolver_dimensions = int(sys.argv[3])	
 
 	# evolver_timesteps = 1000
 	# creature_horizon = 1000
 	# evolver_dimensions = 2
 	num_experiments = 10
+	step_size = .1
 
 	Ts = np.arange(evolver_timesteps)+1
 
@@ -154,7 +161,7 @@ if __name__ == '__main__':
 
 		ultimate_reward_list = run_experiment(len(parameters), parameters, evolver_dimensions,
 			evolver_timesteps, creature_horizon, initial_lambda_multiplier = 0, 
-		step_size = .01, tag = "")
+		step_size = step_size, tag = "")
 
 		ultimate_reward_lists.append(ultimate_reward_list)
 
