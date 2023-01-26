@@ -130,8 +130,8 @@ if __name__ == '__main__':
 	parameters = [.6, .4, .3, .7]
 	
 
-	evolver_timesteps = 10000
-	creature_horizon = 100
+	evolver_timesteps = 1000
+	creature_horizon = 1000
 	evolver_dimensions = 0
 	num_experiments = 10
 
