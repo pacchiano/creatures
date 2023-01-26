@@ -138,49 +138,59 @@ if __name__ == '__main__':
 	#IPython.embed()	
 
 
+
+
 	evolver_timesteps = int(sys.argv[1])
 	creature_horizon = int(sys.argv[2])
-	evolver_dimensions = int(sys.argv[3])	
+	evolver_dimensions_list = sys.argv[3].split( ",")	
+	#IPython.embed()
+	evolver_dimensions_list = [int(x) for x in evolver_dimensions_list]
 
-	# evolver_timesteps = 1000
-	# creature_horizon = 1000
-	# evolver_dimensions = 2
 	num_experiments = 10
 	step_size = .5
 
-	Ts = np.arange(evolver_timesteps)+1
+	colors = ["blue", "red", "black"]
 
-	discrete_contextual_problem = DiscreteContextual(parameters)
-	optimal_mean_reward = discrete_contextual_problem.optimal_mean_reward
+	for evolver_dimensions, i in zip(evolver_dimensions_list, range(len(evolver_dimensions_list))):
 
-	if evolver_dimensions > len(parameters):
-		raise ValueError("Evolver dimensions larger than num parameters")
 
-	ultimate_reward_lists = []
-	for _ in range(num_experiments):
 
-		ultimate_reward_list = run_experiment(len(parameters), parameters, evolver_dimensions,
-			evolver_timesteps, creature_horizon, initial_lambda_multiplier = 0, 
-		step_size = step_size, tag = "")
+		# evolver_timesteps = 1000
+		# creature_horizon = 1000
+		# evolver_dimensions = 2
 
-		ultimate_reward_lists.append(ultimate_reward_list)
+		Ts = np.arange(evolver_timesteps)+1
 
-	#IPython.embed()
+		discrete_contextual_problem = DiscreteContextual(parameters)
+		optimal_mean_reward = discrete_contextual_problem.optimal_mean_reward
 
-	ultimate_rewards_mean = np.mean(np.cumsum(ultimate_reward_lists,1), 0)
-	ultimate_rewards_std = np.std(np.cumsum(ultimate_reward_lists,1), 0)
+		if evolver_dimensions > len(parameters):
+			raise ValueError("Evolver dimensions larger than num parameters")
 
-	cumulative_regrets = np.cumsum(np.ones(evolver_timesteps)*optimal_mean_reward) - ultimate_rewards_mean
+		ultimate_reward_lists = []
+		for _ in range(num_experiments):
 
-	plt.plot(Ts, cumulative_regrets, label = 'regret', color = "blue" )
-	plt.fill_between(Ts, cumulative_regrets - .5*ultimate_rewards_std, cumulative_regrets + .5*ultimate_rewards_std, color = "blue", alpha = .2 )
-	#plt.plot(Ts, cumulative_regrets*1.0, label = 'reward' )
+			ultimate_reward_list = run_experiment(len(parameters), parameters, evolver_dimensions,
+				evolver_timesteps, creature_horizon, initial_lambda_multiplier = 0, 
+			step_size = step_size, tag = "")
+
+			ultimate_reward_lists.append(ultimate_reward_list)
+
+		#IPython.embed()
+
+		ultimate_rewards_mean = np.mean(np.cumsum(ultimate_reward_lists,1), 0)
+		ultimate_rewards_std = np.std(np.cumsum(ultimate_reward_lists,1), 0)
+
+		cumulative_regrets = np.cumsum(np.ones(evolver_timesteps)*optimal_mean_reward) - ultimate_rewards_mean
+
+		plt.plot(Ts, cumulative_regrets, label = 'Evolver Dim {}'.format(evolver_dimensions), color = colors[i] )
+		plt.fill_between(Ts, cumulative_regrets - .5*ultimate_rewards_std, cumulative_regrets + .5*ultimate_rewards_std, color = colors[i], alpha = .2 )
 	
-	plt.title("Regret T{} H{} Edim{}".format(evolver_timesteps, creature_horizon, evolver_dimensions))
+	plt.title("Regret T{} H{}".format(evolver_timesteps, creature_horizon))
 	plt.xlabel("Timesteps")
 	plt.ylabel("Regret")
-	
-	plt.savefig("./plots/discrete_context_regrets_T{}_H{}_Edim{}.png".format(evolver_timesteps, creature_horizon, evolver_dimensions))
+	plt.legend(loc = "upper right")	
+	plt.savefig("./plots/discrete_context_regrets_T{}_H{}.png".format(evolver_timesteps, creature_horizon))
 
 	# discrete_contextual_problem = DiscreteContextual(parameters)
 	# creature_learner = CreatureLearner(len(parameters))
