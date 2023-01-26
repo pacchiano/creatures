@@ -134,6 +134,10 @@ if __name__ == '__main__':
 
 	plt.close("all")
 
+
+	### Save the data and add commmand line arguments
+
+
 	#IPython.embed()
 
 
