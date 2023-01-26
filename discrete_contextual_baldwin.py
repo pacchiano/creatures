@@ -147,7 +147,7 @@ if __name__ == '__main__':
 	evolver_dimensions_list = [int(x) for x in evolver_dimensions_list]
 
 	num_experiments = 10
-	step_size = .5
+	step_size = .1
 
 	colors = ["blue", "red", "black"]
 
