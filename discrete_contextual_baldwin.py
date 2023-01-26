@@ -146,7 +146,7 @@ if __name__ == '__main__':
 	# creature_horizon = 1000
 	# evolver_dimensions = 2
 	num_experiments = 10
-	step_size = .1
+	step_size = .5
 
 	Ts = np.arange(evolver_timesteps)+1
 
