@@ -134,7 +134,7 @@ def run_experiment(num_contexts, parameters, evolver_dimensions,
 
 
 if __name__ == '__main__':
-	parameters = [.6, .4, .3, .7]
+	parameters = [.9, .1, .2, .7]
 	#IPython.embed()	
 
 
