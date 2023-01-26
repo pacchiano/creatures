@@ -129,10 +129,12 @@ def run_experiment(num_contexts, parameters, evolver_dimensions,
 
 if __name__ == '__main__':
 	parameters = [.6, .4, .3, .7]
-	
-	evolver_timesteps = int(sys.argv[0])
-	creature_horizon = int(sys.argv[1])
-	evolver_dimension = int(sys.argv[2])	
+	IPython.embed()	
+
+
+	evolver_timesteps = int(sys.argv[1])
+	creature_horizon = int(sys.argv[2])
+	evolver_dimension = int(sys.argv[3])	
 
 	# evolver_timesteps = 1000
 	# creature_horizon = 1000
