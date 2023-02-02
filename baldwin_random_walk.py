@@ -86,7 +86,7 @@ if __name__ == '__main__':
 	num_experiments = 10
 
 	environment_drift = True
-	drift_probability = .001
+	drift_probability = .0001
 
 	#evolver_timesteps = 1000
 	dimension = 5
