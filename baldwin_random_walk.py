@@ -75,7 +75,7 @@ def run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_mu
 
 @ray.remote
 def run_search_remote(dimension, evolver_timesteps, creature_horizon, initial_lambda_multiplier = 0, 
-	step_size = .01, tag = "", environment_drift = False):
+	step_size = .01, tag = "", environment_drift = False, drift_probability = .01):
 	return run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_multiplier = 0, 
 		step_size = step_size, tag = tag, environment_drift = environment_drift)
 
@@ -104,7 +104,7 @@ if __name__ == '__main__':
 	
 	#summary = np.zeros(( num_experiments, evolver_timesteps))
 	### Average over the last 100 
-	USE_RAY = False
+	USE_RAY = True
 
 	#creature_horizon_results = []
 
