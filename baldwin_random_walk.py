@@ -77,7 +77,7 @@ def run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_mu
 def run_search_remote(dimension, evolver_timesteps, creature_horizon, initial_lambda_multiplier = 0, 
 	step_size = .01, tag = "", environment_drift = False, drift_probability = .01):
 	return run_search(dimension, evolver_timesteps, creature_horizon, initial_lambda_multiplier = 0, 
-		step_size = step_size, tag = tag, environment_drift = environment_drift)
+		step_size = step_size, tag = tag, environment_drift = environment_drift, drift_probability = drift_probability)
 
 
 
