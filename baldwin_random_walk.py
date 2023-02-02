@@ -86,6 +86,7 @@ if __name__ == '__main__':
 	num_experiments = 10
 
 	environment_drift = True
+	drift_probability = .01
 
 	#evolver_timesteps = 1000
 	dimension = 5
@@ -111,11 +112,11 @@ if __name__ == '__main__':
 
 		if USE_RAY:
 			experiments_results = [run_search_remote.remote(dimension, evolver_timesteps, 
-				creature_horizon, step_size = step_size, environment_drift = environment_drift, tag = "{} exp{}".format( evolver_timesteps, j+1)) for j in range(num_experiments)]
+				creature_horizon, step_size = step_size, environment_drift = environment_drift, drift_probability = drift_probability, tag = "{} exp{}".format( evolver_timesteps, j+1)) for j in range(num_experiments)]
 			experiments_results = ray.get(experiments_results)
 		else:
 			experiments_results = [run_search(dimension, evolver_timesteps, 
-				creature_horizon, step_size = step_size, environment_drift = environment_drift, tag = "{} exp{}".format( evolver_timesteps, j+1)) for j in range(num_experiments)]
+				creature_horizon, step_size = step_size, environment_drift = environment_drift, drift_probability = drift_probability, tag = "{} exp{}".format( evolver_timesteps, j+1)) for j in range(num_experiments)]
 		
 		means = np.mean(experiments_results, 0)
 		stds = np.std(experiments_results, 0)
@@ -141,7 +142,10 @@ if __name__ == '__main__':
 	plt.xlabel("Evolver Timesteps")
 	plt.ylabel("Average Ultimate Rewards")
 	plt.legend(loc = "lower right")
-	plt.savefig("./plots/randomwalk_baldwin_{}_drift{}.png".format(step_size, environment_drift))
+	if environment_drift:
+		plt.savefig("./plots/randomwalk_baldwin_{}_drift{}_prob{}.png".format(step_size, environment_drift, drift_probability))
+	else:
+		plt.savefig("./plots/randomwalk_baldwin_{}.png".format(step_size, environment_drift))
 
 
 	plt.close("all")
