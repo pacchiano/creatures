@@ -73,10 +73,19 @@ def find_first_evolver_step_match(evolver_dimension, creature_dimension, creatur
 
 if __name__ == '__main__':
 
+
+	### Make these into command line arguments
+
 	evolver_dimension = 10
 	evolver_timesteps = 100000
 
 	num_experiments = 10
+
+
+
+
+
+
 
 	creature_dimension = 5 ### Try different actor bit lengths. 
 	### Keep horizon fixed and vary the creature dimension.
