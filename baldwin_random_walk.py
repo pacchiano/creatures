@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
 	num_experiments = 10
 
-	environment_drift = True
+	environment_drift = False
 	drift_probability = .0001
 
 	#evolver_timesteps = 1000
@@ -93,7 +93,7 @@ if __name__ == '__main__':
 	creature_horizons = [1, 50, 100, 200]
 	colors = ["blue", "red", "green", "black"]
 
-	step_size = .1
+	step_size = .101
 
 	evolver_timesteps = 100000
 
@@ -138,6 +138,8 @@ if __name__ == '__main__':
 
 
 	plt.xscale("log")
+	plt.yscale("log")
+
 	plt.title("Foraging Search Average Rewards")
 	plt.xlabel("Evolver Timesteps")
 	plt.ylabel("Average Ultimate Rewards")
